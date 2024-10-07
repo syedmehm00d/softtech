@@ -1,0 +1,99 @@
+{% include "header.html" %}
+
+<section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+    <div class="container">
+            
+        <!-- Google Ad Inside the same row -->
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="col-lg-8 col-12">
+                    <div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;">
+                      <ins class="adsbygoogle"
+                      style="display:block"
+                      data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+                      data-ad-slot="xxxxxxxxxx"
+                      data-ad-format="auto"></ins>
+                   </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-12 text-center">
+                            <h3 class="mb-4">Popular Topics</h3>
+                        </div>
+
+                        <div class="col-lg-8 col-12 mt-3 mx-auto">
+                            {% for blog in blogs %}
+                            <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5">
+                                <div class="d-flex">
+                                    <!-- Display blog image -->
+                                    <img src="{{ blog.image.url }}" class="custom-block-image img-fluid" alt="{{ blog.title }}">
+                    
+                                    <div class="custom-block-topics-listing-info d-flex">
+                                        <div>
+                                            <!-- Blog title -->
+                                            <h5 class="mb-2">{{ blog.title }}</h5>
+                    
+                                            <!-- Blog description -->
+                                            <p class="mb-0">{{ blog.description|truncatewords:20 }}</p>
+                    
+                                            <!-- Link to blog detail page using slug -->
+                                            <a href="{% url 'blog_detail' blog.slug %}" class="btn custom-btn mt-3 mt-lg-4">Learn More</a>
+                                        </div>
+                    
+                                        <!-- Optional badge -->
+                                        <span class="badge bg-design rounded-pill ms-auto">14</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-lg-12 col-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">Prev</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                    </li>
+
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">4</a>
+                                    </li>
+
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">5</a>
+                                    </li>
+                                    
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            
+ {% include "footer.html" %}

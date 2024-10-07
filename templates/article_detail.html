@@ -1,0 +1,75 @@
+{% include "header.html" %}
+
+<section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+    <div class="container">
+            
+        <!-- Google Ad Inside the same row -->
+        <div class="row">
+            <div class="col-lg-8 col-12">
+              <div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;">
+                <ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-2157588733990902" data-adsbygoogle-status="done" style="display: block; margin: 10px auto; background-color: transparent; height: 280px;" data-ad-status="filled">
+                 <div id="aswift_1_host" style="border: none; height: 280px; width: 1200px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;">
+                  <iframe id="aswift_1" name="aswift_1" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:1200px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="1200" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-2157588733990902&amp;output=html&amp;h=280&amp;adk=3192709707&amp;adf=4193576102&amp;pi=t.aa~a.2217760222~rp.1&amp;w=1200&amp;abgtt=6&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1726414840&amp;rafmt=1&amp;to=qs&amp;pwprc=6207569666&amp;format=1200x280&amp;url=https%3A%2F%2Fwww.informalnewz.com%2F&amp;fwr=0&amp;pra=3&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;fa=40&amp;uach=WyJXaW5kb3dzIiwiMTUuMC4wIiwieDg2IiwiIiwiMTI4LjAuNjYxMy4xMzgiLG51bGwsMCxudWxsLCI2NCIsW1siQ2hyb21pdW0iLCIxMjguMC42NjEzLjEzOCJdLFsiTm90O0E9QnJhbmQiLCIyNC4wLjAuMCJdLFsiR29vZ2xlIENocm9tZSIsIjEyOC4wLjY2MTMuMTM4Il1dLDBd&amp;dt=1726419807366&amp;bpp=6&amp;bdt=745&amp;idt=77&amp;shv=r20240911&amp;mjsv=m202409100101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3D30bf0d4cfa7a30fb%3AT%3D1725636043%3ART%3D1726396503%3AS%3DALNI_Mbjeuv7WSFOlMoH-0THUYy0yCqJQA&amp;eo_id_str=ID%3Daf275300642f05e9%3AT%3D1725636043%3ART%3D1726396503%3AS%3DAA-Afja_oLG5ZJIJffKw1ZxjTreK&amp;prev_fmts=0x0&amp;nras=2&amp;correlator=4522548738204&amp;frm=20&amp;pv=1&amp;u_tz=300&amp;u_his=2&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1032&amp;u_aw=1920&amp;u_cd=24&amp;u_sd=1&amp;dmc=8&amp;adx=352&amp;ady=417&amp;biw=1903&amp;bih=945&amp;scr_x=0&amp;scr_y=0&amp;eid=44759876%2C44759927%2C44759842%2C31087065%2C44798934%2C95338228%2C95341662%2C95341671&amp;oid=2&amp;pvsid=598381213088037&amp;tmod=1432886836&amp;uas=0&amp;nvt=1&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C1920%2C0%2C1920%2C1032%2C1920%2C945&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=128&amp;bc=31&amp;bz=1&amp;td=1&amp;tdf=2&amp;psd=W251bGwsbnVsbCxudWxsLDNd&amp;nt=1&amp;ifi=2&amp;uci=a!2&amp;fsb=1&amp;dtd=83" data-google-container-id="a!2" tabindex="0" title="Advertisement" aria-label="Advertisement" data-google-query-id="CKyp9vm2xYgDFVR2pAQdHoESQA" data-load-complete="true">        
+                  </iframe>
+                  </div>
+                 </ins>
+             </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section class="topics-detail-section section-padding" id="topics-detail">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2">
+                            <!-- AdSense Ad (Left) -->
+                            <div class="adsense">
+                                <ins class="adsbygoogle"
+                                    style="display:block"
+                                    data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+                                    data-ad-slot="xxxxxxxxxx"
+                                    data-ad-format="auto"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-12 mb-4" style="padding: 5px;">
+                            <main>
+                                <article>
+                                    <h2>{{ article.news_title }}</h2>
+                                    <p class="date">{{ article.news_datetime_published }}</p>
+                                    <img class="article-img" src="{{ article.news_image.url }}" alt="{{ article.news_title }}">
+                                    <div>{{ article.news_detail|safe }}</div>
+                                </article>
+                                <style>
+                                    .article-img {
+                                        object-fit: cover;
+                                        max-width: 100%; /* Ensures the image doesn't exceed the column width */
+                                        height: auto;    /* Maintains aspect ratio */
+                                        display: block;  /* Ensures there’s no extra space below the image */
+                                        margin-bottom: 1rem; /* Optional: Adds space below the image */
+                                    }
+                                </style>
+                            </main>
+                         </div>
+                         <div class="col-2">
+                            <!-- AdSense Ad (Left) -->
+                            <div class="adsense">
+                                <ins class="adsbygoogle"
+                                    style="display:block"
+                                    data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+                                    data-ad-slot="xxxxxxxxxx"
+                                    data-ad-format="auto"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+           
+            {% include "footer.html" %}

@@ -1,0 +1,84 @@
+
+{% include "header.html" %}
+
+<section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+    <div class="container">
+            
+        <!-- Google Ad Inside the same row -->
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;">
+                  <ins class="adsbygoogle"
+                  style="display:block"
+                  data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+                  data-ad-slot="xxxxxxxxxx"
+                  data-ad-format="auto"></ins>
+               </div>
+              </div>
+        </div>
+    </div>
+</section>
+<section class="topics-detail-section section-padding" id="topics-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <!-- AdSense Ad (Left) -->
+                <div class="adsense">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+                        data-ad-slot="xxxxxxxxxx"
+                        data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6 col-sm-12 mb-4" style="padding: 5px;">
+                <main>
+{% block content %}
+<div class="blog-detail">
+    <h1>{{ blog.title }}</h1>
+    
+    <div class="blog-content">
+        {% for content in contents %}
+            {% if content.content_type == 'text' %}
+                <div class="text-content">
+                    {{ content.text|safe }}  <!-- Render rich text -->
+                </div>
+            {% elif content.content_type == 'image' %}
+                <figure class="image-content">
+                    <img src="{{ content.image.url }}" alt="Image for {{ blog.title }}">
+                    {% if content.caption %}
+                        <figcaption>{{ content.caption }}</figcaption>
+                    {% endif %}
+                </figure>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <p>Published on {{ blog.published_date }}</p>
+</div>
+{% endblock %}
+</main>
+</div>
+<div class="col-2">
+   <!-- AdSense Ad (Left) -->
+   <div class="adsense">
+       <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+           data-ad-slot="xxxxxxxxxx"
+           data-ad-format="auto"></ins>
+       <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+       </script>
+   </div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+{% include "footer.html" %}

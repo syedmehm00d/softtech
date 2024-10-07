@@ -1,0 +1,134 @@
+{% include "header.html" %}
+
+<section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+    <div class="container">            
+        <!-- Google Ad Inside the same row -->
+        <div class="row">
+            <div class="col-lg-8 col-12">
+              <div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;">
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+                data-ad-slot="xxxxxxxxxx"
+                data-ad-format="auto"></ins>
+             </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="featured-section">  
+</section>
+<section class="explore-section section-padding" id="section_2">
+    <div class="container-fluid">
+        <div class="row">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if selected_category == 'ALL' %}active{% endif %}" href="?category=ALL">ALL</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if selected_category == 'PAKISTAN' %}active{% endif %}" href="?category=PAKISTAN">PAKISTAN</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if selected_category == 'BUSINESS' %}active{% endif %}" href="?category=BUSINESS">BUSINESS</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if selected_category == 'INTERNATIONAL' %}active{% endif %}" href="?category=INTERNATIONAL">INTERNATIONAL</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if selected_category == 'SPORTS' %}active{% endif %}" href="?category=SPORTS">SPORTS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">          
+            <div class="col-2">
+                <!-- AdSense Ad (Left) -->
+                <div class="adsense">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+                        data-ad-slot="xxxxxxxxxx"
+                        data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>    
+            <div class="col-8"> 
+                <div class="container">
+                    <div class="row">
+                        {% for article in page_obj %}
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4" style="padding: 5px;">
+                            <div class="custom-block bg-white shadow-lg">
+                                <a href="{% url 'article_detail' article.slug %}">
+                                    <div class="d-flex">
+                                        <div>
+                                            <h6 class="mb-2">{{ article.news_title }}</h6>                                                                                                
+                                        </div>
+                                        <span class="badge bg-design rounded-pill ms-auto">{{ article.views }}</span>
+                                    </div>
+                                    <div class="custom-block-content">
+                                        <img src="{{ article.news_image.url }}" class="custom-block-image img-fluid" alt="News Image">
+                                        <p>{{ article.news_desc|safe }}
+                                            <a href="{% url 'article_detail' article.slug %}"><strong>Read More</strong></a>
+                                        </p>
+                                    </div>
+                                </a>
+                                <div class="custom-block-footer">
+                                    <p class="text-muted">{{ article.news_datetime_published }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>          
+                </div>
+            </div>
+            <div class="col-2">
+                <!-- AdSense Ad (Right) -->
+                <div class="adsense">
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-xxxxxxxxxxxxxx"
+                        data-ad-slot="xxxxxxxxxx"
+                        data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div> 
+        </div>
+        
+        <div class="col-lg-12 col-12">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mb-0">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">Prev</span>
+                        </a>
+                    </li>
+                    {% endif %}
+        
+                    {% for num in page_obj.paginator.page_range %}
+                    <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                    {% endfor %}
+        
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">Next</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div> 
+    </div> 
+</section>
+
+
+{% include "footer.html" %}
