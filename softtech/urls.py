@@ -25,4 +25,5 @@ urlpatterns = [
     path('Blogs/',views.blog_page,name='blogs'),
     path('news/<slug:slug>/', views.article_detail, name='article_detail'),
     path('blogs/<slug:slug>/', views.blog_detail, name='blog_detail'), 
+    path('contact/', views.contact, name='contact'),
 ]
