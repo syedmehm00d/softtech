@@ -64,28 +64,38 @@
                             <script>
                                 document.getElementById('contactForm').addEventListener('submit', function(event) {
                                     event.preventDefault(); // Prevent default form submission
-                            
-                                    var formData = new FormData(this);
-                            
+                                
+                                    var formData = new FormData(this); // Collect form data
+                                    var csrfToken = formData.get('csrfmiddlewaretoken'); // Get the CSRF token from the form
+                                
                                     fetch("{% url 'contact' %}", {
                                         method: 'POST',
                                         headers: {
-                                            'X-CSRFToken': '{{ csrf_token }}'
+                                            'X-CSRFToken': csrfToken, // Send the CSRF token here
+                                            'Accept': 'application/json', // Specify expected response type
                                         },
                                         body: formData
                                     })
-                                    .then(response => response.json())
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok: ' + response.statusText);
+                                        }
+                                        return response.json();
+                                    })
                                     .then(data => {
                                         if (data.success) {
-                                            alert("Thank you! Your message has been sent."); // Pop-up message
+                                            alert("Thank you! Your message has been sent.");
                                             window.location.href = '/'; // Redirect to homepage
+                                        } else {
+                                            alert("There was a problem sending your message.");
                                         }
                                     })
                                     .catch(error => {
                                         console.error('Error:', error);
+                                        alert("An error occurred: " + error.message);
                                     });
                                 });
-                            </script>
+                                </script>
                         </div>
 
                         <div class="col-lg-5 col-12 mx-auto mt-5 mt-lg-0">
