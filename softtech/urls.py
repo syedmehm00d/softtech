@@ -17,6 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from softtech import views
+from blogs.sitemaps import BlogSitemap
+from news.sitemaps import NewsArticleSitemap
+from django.contrib.sitemaps.views import sitemap
+
+sitemaps = {
+    'blogs': BlogSitemap,
+    'news': NewsArticleSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +34,5 @@ urlpatterns = [
     path('news/<slug:slug>/', views.article_detail, name='article_detail'),
     path('blogs/<slug:slug>/', views.blog_detail, name='blog_detail'), 
     path('contact/', views.contact, name='contact'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]

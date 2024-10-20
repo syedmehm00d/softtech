@@ -15,7 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+SITE_ID = 1
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fgmg6^q9x0f5&!!%3voey&_7zsv5sd5+(wg5rpm-_p7f18oyuh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['www.synersoft.biz','synersoft.biz', 'localhost', '127.0.0.1','13.49.67.67','localhost','172.31.45.62']
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'news',
     'blogs',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
     
 ]
 

@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.utils.text import slugify
 from tinymce.models import HTMLField
+from django.urls import reverse
 
 def unique_image_path(instance, filename):
     # Get the file extension
@@ -39,4 +40,7 @@ class NewsArticle(models.Model):
                 counter += 1
             self.slug = slug
         super().save(*args, **kwargs)
+
+     def get_absolute_url(self):
+        return reverse('article_detail', kwargs={'slug': self.slug})  # Adjust the 'article_detail' to match your URL name
 # Create your models here.

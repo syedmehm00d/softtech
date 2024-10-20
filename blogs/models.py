@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from tinymce.models import HTMLField
 from django.utils.text import slugify
+from django.urls import reverse
 
 def unique_image_path(instance, filename):
     # Get the file extension of the uploaded file
@@ -38,6 +39,8 @@ class Blog(models.Model):
         
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse('blog_detail', kwargs={'slug': self.slug})  # Adjust 'blog_detail' to match your actual URL name
 
 class BlogContent(models.Model):
     BLOG_CONTENT_TYPE_CHOICES = [
@@ -54,4 +57,5 @@ class BlogContent(models.Model):
 
     class Meta:
         ordering = ['order']
+
 # Create your models here.
