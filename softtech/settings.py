@@ -23,12 +23,12 @@ SITE_ID = 1
 SECRET_KEY = 'django-insecure-fgmg6^q9x0f5&!!%3voey&_7zsv5sd5+(wg5rpm-_p7f18oyuh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['www.synersoft.biz','synersoft.biz', 'localhost', '127.0.0.1','13.49.67.67','localhost','172.31.45.62']
+ALLOWED_HOSTS = ['www.synersoft.biz','synersoft.biz','103.147.86.158']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://www.synersoft.biz',
+    'https://www.synersoft.biz','https://synersoft.biz',
 ]
 # Application definition
 

@@ -20,10 +20,15 @@ from softtech import views
 from blogs.sitemaps import BlogSitemap
 from news.sitemaps import NewsArticleSitemap
 from django.contrib.sitemaps.views import sitemap
+from softtech.sitemaps import StaticViewSitemap
+from .views import download_video
+from django.conf import settings
+from django.conf.urls.static import static
 
 sitemaps = {
-    'blogs': BlogSitemap,
-    'news': NewsArticleSitemap,
+    'blogs': BlogSitemap(),
+    'news': NewsArticleSitemap(),
+    'static': StaticViewSitemap(),
 }
 
 urlpatterns = [
@@ -34,5 +39,13 @@ urlpatterns = [
     path('news/<slug:slug>/', views.article_detail, name='article_detail'),
     path('blogs/<slug:slug>/', views.blog_detail, name='blog_detail'), 
     path('contact/', views.contact, name='contact'),
+    path('youtube-video-downloader/', views.download_video, name='download_video'),
+    path('fetch-video-details/', views.fetch_video_details, name='fetch_video_details'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    path('youtube-video-downloader/', download_video, name='download_video'),
+    path('youtube-video-downloader/<str:filename>/', views.download_video_file, name='download_video_file'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,62 +1,74 @@
 {% include "header.html" %}
 
-<section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
-    <div class="container">
-            
-        <!-- Google Ad Inside the same row -->
-        <div class="row">
-            <div class="col-lg-8 col-12">
-                <div class="google-auto-placed" style="width: 100%; height: auto; clear: both; text-align: center;">
-                    <!-- AdSense Ad (Left) -->
-                    <div class="adsense">
-                      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6644237537141647"
-                      crossorigin="anonymous"></script>
-                 <!-- topAdd -->
-                 <ins class="adsbygoogle"
-                      style="display:block"
-                      data-ad-client="ca-pub-6644237537141647"
-                      data-ad-slot="9069859822"
-                      data-ad-format="auto"
-                      data-full-width-responsive="true"></ins>
-                 <script>
-                      (adsbygoogle = window.adsbygoogle || []).push({});
-                 </script>
-               </div>
-              </div>
-            </div>
+<section
+  class="hero-section d-flex justify-content-center align-items-center"
+  id="section_1"
+>
+  <div class="container">
+    <!-- Google Ad Inside the same row -->
+    <div class="row">
+      <div class="col-lg-8 col-12">
+        {% comment %}
+        <div
+          class="google-auto-placed"
+          style="width: 100%; height: auto; clear: both; text-align: center"
+        >
+          <!-- AdSense Ad -->
+          <div class="adsense">
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6644237537141647"
+              crossorigin="anonymous"
+            ></script>
+            <!-- topAdd -->
+            <ins
+              class="adsbygoogle"
+              style="display: block"
+              data-ad-client="ca-pub-6644237537141647"
+              data-ad-slot="9069859822"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            ></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
         </div>
+        {% endcomment %}
+      </div>
     </div>
+  </div>
 </section>
-            <section class="topics-detail-section section-padding" id="topics-detail">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-2 d-none d-md-block">
-                        </div>
-                        <div class="col-lg-8 col-md-6 col-sm-12 mb-4" style="padding: 5px;">
-                            <main>
-                                <article>
-                                    <h2>{{ article.news_title }}</h2>
-                                    <p class="date">{{ article.news_datetime_published }}</p>
-                                    <img class="article-img" src="{{ article.news_image.url }}" alt="{{ article.news_title }}">
-                                    <div>{{ article.news_detail|safe }}</div>
-                                </article>
-                                <style>
-                                    .article-img {
-                                        object-fit: cover;
-                                        max-width: 100%; /* Ensures the image doesn't exceed the column width */
-                                        height: auto;    /* Maintains aspect ratio */
-                                        display: block;  /* Ensures there’s no extra space below the image */
-                                        margin-bottom: 1rem; /* Optional: Adds space below the image */
-                                    }
-                                </style>
-                            </main>
-                         </div>
-                         <div class="col-md-2 d-none d-md-block">
-                        </div>
-                        </div>
+<section class="topics-detail-section section-padding" id="topics-detail">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 d-none d-md-block"></div>
+      <div class="col-lg-8 col-md-6 col-sm-12 mb-4" style="padding: 5px">
+        <main>
+          <article>
+            <h2>{{ article.news_title }}</h2>
+            <p class="date">{{ article.news_datetime_published }}</p>
+            <img
+              class="article-img"
+              src="{{ article.news_image.url }}"
+              alt="{{ article.news_title }}"
+            />
+            <div>{{ article.news_detail|safe }}</div>
+          </article>
+          <style>
+            .article-img {
+              object-fit: cover;
+              max-width: 100%; /* Ensures the image doesn't exceed the column width */
+              height: auto; /* Maintains aspect ratio */
+              display: block; /* Ensures there’s no extra space below the image */
+              margin-bottom: 1rem; /* Optional: Adds space below the image */
+            }
+          </style>
+        </main>
+      </div>
+      <div class="col-md-2 d-none d-md-block"></div>
+    </div>
+  </div>
+</section>
 
-                    </div>
-                </div>
-            </section>
-           
-            {% include "footer.html" %}
+{% include "footer.html" %}

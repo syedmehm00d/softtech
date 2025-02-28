@@ -1,0 +1,186 @@
+{% include "header.html" %}
+
+<section
+  class="hero-section d-flex justify-content-center align-items-center"
+  id="section_1"
+>
+  <div class="container">
+    <!-- Google Ad Inside the same row -->
+    <div class="row">
+      <div class="col-lg-8 col-12">
+        {% comment %}
+        <div
+          class="google-auto-placed"
+          style="width: 100%; height: auto; clear: both; text-align: center"
+        >
+          <!-- AdSense Ad -->
+          <div class="adsense">
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6644237537141647"
+              crossorigin="anonymous"
+            ></script>
+            <!-- topAdd -->
+            <ins
+              class="adsbygoogle"
+              style="display: block"
+              data-ad-client="ca-pub-6644237537141647"
+              data-ad-slot="9069859822"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            ></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+        </div>
+        {% endcomment %}
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-padding section-bg">
+  <div class="container">
+    <div class="row">
+      <div class="container mt-5">
+        <h2>Download YouTube Video</h2>
+        <p>
+          Please enter the YouTube video URL and click "Get Video Details" to
+          fetch video information:
+        </p>
+
+        <form id="YouTubeDownloadForm" method="post">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="{{ form.youtube_url.id_for_label }}" class="form-label"
+              >{{ form.youtube_url.label }}</label
+            >
+            {{ form.youtube_url }}
+            <div class="form-text">{{ form.youtube_url.help_text }}</div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="get-video-details-btn"
+          >
+            Get Video Details
+          </button>
+        </form>
+
+        <!-- Video Details Section (Initially Hidden) -->
+        <div id="video-info" class="mt-4" style="display: none">
+          <h3 id="video-title"></h3>
+          <img
+            id="video-thumbnail"
+            class="img-fluid"
+            style="max-width: 300px; display: none"
+            alt="Video Thumbnail"
+          />
+        </div>
+
+        <!-- Video Details Section (Initially Hidden) -->
+        <div id="video-info" class="mt-4" style="display: none">
+          <h3 id="video-title"></h3>
+          <img
+            id="video-thumbnail"
+            class="img-fluid"
+            style="max-width: 300px; display: none"
+            alt="Video Thumbnail"
+          />
+        </div>
+
+        <!-- Show Video Download Link (Initially Hidden) -->
+        <button
+          id="download-video-btn"
+          class="btn btn-success mt-4"
+          style="display: none"
+        >
+          Download Video
+        </button>
+        <!-- Video Download Link -->
+        <a
+          id="save-video-btn"
+          class="btn btn-success mt-4"
+          style="display: none"
+          download
+        >
+          Save Video
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    // Handle form submission to fetch video details
+    $("#YouTubeDownloadForm").on("submit", function (e) {
+      e.preventDefault();
+
+      var youtubeUrl = $("#id_youtube_url").val();
+
+      $.ajax({
+        url: '{% url "fetch_video_details" %}',
+        type: "POST",
+        data: {
+          youtube_url: youtubeUrl,
+          csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+        },
+        success: function (response) {
+          if (response.success) {
+            // Show video title and thumbnail
+            $("#video-title").text(response.title);
+            $("#video-thumbnail").attr("src", response.thumbnail).show();
+            $("#video-info").show();
+
+            // Show download button
+            $("#download-video-btn").show();
+          } else {
+            alert("Error: " + response.error);
+          }
+        },
+        error: function (xhr, errmsg, err) {
+          alert("Error fetching video details: " + errmsg);
+        },
+      });
+    });
+
+    // Handle download button click
+    $("#download-video-btn").on("click", function () {
+      var youtubeUrl = $("#id_youtube_url").val();
+
+      $.ajax({
+        url: '{% url "download_video" %}',
+        type: "POST",
+        data: {
+          youtube_url: youtubeUrl,
+          csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+        },
+        success: function (response) {
+          if (response.success) {
+            // Show "Save Video" button with the correct download link
+            $("#save-video-btn")
+              .attr("href", response.download_link)
+              .attr("download", "")
+              .show();
+          } else {
+            alert("Download failed. Try again.");
+          }
+        },
+        error: function (xhr, errmsg, err) {
+          alert("Error downloading video: " + errmsg);
+        },
+      });
+    });
+    // Handle "Save Video" button click
+    $("#save-video-btn").on("click", function () {
+      var downloadLink = $(this).attr("href");
+
+      // Trigger download by changing window location
+      window.location.href = downloadLink;
+    });
+  });
+</script>
+{% include 'footer.html' %}
